@@ -1,6 +1,6 @@
 <?php
 
-namespace Kaboodle\InterfaceDistiller\Distillate;
+namespace Kaboodle\InterfaceDistiller;
 
 class Distillate implements Distillate\Accessors, Distillate\Mutators
 {

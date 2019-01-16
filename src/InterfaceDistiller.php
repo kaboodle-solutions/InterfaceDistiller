@@ -5,7 +5,7 @@ namespace Kaboodle\InterfaceDistiller;
 class InterfaceDistiller
 {
     /**
-     * @var \Kaboodle\InterfaceDistiller\Distillate
+     * @var \Kaboodle\InterfaceDistiller\Distillate\Distillate
      */
     protected $distillate;
 
