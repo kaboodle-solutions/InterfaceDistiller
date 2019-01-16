@@ -20,6 +20,11 @@ class Writer
     protected $inGlobalNamespace;
 
     /**
+     * @var bool
+     */
+    protected $convertParametersToCamelCase;
+
+    /**
      * @param \SplFileObject $fileObject
      */
     public function __construct(\SplFileObject $fileObject)
@@ -31,8 +36,9 @@ class Writer
      * @param Accessors $distillate
      * @return void
      */
-    public function writeToFile(Accessors $distillate)
+    public function writeToFile(Accessors $distillate, bool $convertParametersToCamelCase = false)
     {
+        $this->convertParametersToCamelCase = $convertParametersToCamelCase;
         $this->writeString('<?php' . PHP_EOL);
         $this->writeInterfaceSignature(
             $distillate->getInterfaceName(),
@@ -145,13 +151,14 @@ class Writer
         if (!is_null($type)) {
             $typeString = ($nullable && !$optional ? "?" : "") . ($type->isBuiltin() ? "" : $classPrefix) . $type;
         }
+        $parameterName = $this->convertParametersToCamelCase ? lcfirst(ucwords($parameter->name, '-')) : $parameter->name;
 
         return trim(
             sprintf(
                 '%s %s$%s%s',
                 $typeString,
                 $parameter->isPassedByReference() ? '&' : '',
-                $parameter->name,
+                $parameterName,
                 $this->resolveDefaultValue($parameter)
             )
         );

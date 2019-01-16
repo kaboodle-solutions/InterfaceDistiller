@@ -55,6 +55,12 @@ class InterfaceDistiller
     protected $saveAs;
 
     /**
+     *
+     * @var bool
+     */
+    private $convertParametersToCamelCase;
+
+    /**
      * @return void
      */
     public function __construct()
@@ -75,8 +81,9 @@ class InterfaceDistiller
         $this->excludeTraitMethods = false;
         $this->methodModifiers = \ReflectionMethod::IS_PUBLIC;
         $this->pcrePattern = '';
-        $this->reflectionClass = null;
+        $this->reflectionClass = "";
         $this->saveAs = null;
+        $this->convertParametersToCamelCase = false;
     }
 
     /**
@@ -225,6 +232,15 @@ class InterfaceDistiller
     protected function writeDistillate()
     {
         $writer = new Distillate\Writer($this->saveAs);
-        $writer->writeToFile($this->distillate);
+        $writer->writeToFile($this->distillate, $this->convertParametersToCamelCase);
+    }
+
+    /**
+     * @return self
+     */
+    public function convertParametersToCamelCase(): self
+    {
+        $this->convertParametersToCamelCase = true;
+        return $this;
     }
 }
