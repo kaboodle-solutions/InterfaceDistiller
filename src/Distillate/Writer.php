@@ -94,10 +94,11 @@ class Writer
     {
         $this->writeString(
             sprintf(
-                static::INDENT . 'public%sfunction %s(%s);',
+                static::INDENT . 'public%sfunction %s(%s)%s;',
                 $method->isStatic() ? ' static ' : ' ',
                 $method->name,
-                $this->methodParametersToString($method)
+                $this->methodParametersToString($method),
+                $this->methodReturnToString($method)
             )
         );
     }
@@ -137,12 +138,18 @@ class Writer
     protected function parameterToString(\ReflectionParameter $parameter)
     {
         $classPrefix = $this->inGlobalNamespace ? '' : '\\';
+        $typeString = "";
+        $nullable = $parameter->allowsNull();
+        $optional = $parameter->isOptional();
+        $type = $parameter->getType();
+        if (!is_null($type)) {
+            $typeString = ($nullable && !$optional ? "?" : "") . ($type->isBuiltin() ? "" : $classPrefix) . $type;
+        }
 
         return trim(
             sprintf(
-                '%s%s %s$%s%s',
-                $parameter->getClass() ? $classPrefix . $this->resolveTypeHint($parameter) : '',
-                $parameter->isArray() ? 'array' : '',
+                '%s %s$%s%s',
+                $typeString,
                 $parameter->isPassedByReference() ? '&' : '',
                 $parameter->name,
                 $this->resolveDefaultValue($parameter)
@@ -191,5 +198,27 @@ class Writer
     protected function handleOptionalParameterWithUnresolvableDefaultValue(\ReflectionParameter $parameter)
     {
         return $parameter->allowsNull() ? ' = NULL ' : ' /* = unresolvable */ ';
+    }
+
+    /**
+     * @param \ReflectionMethod $method
+     * @return string
+     */
+    protected function methodReturnToString(\ReflectionMethod $method)
+    {
+        $classPrefix = $this->inGlobalNamespace ? '' : '\\';
+        $returnType = $method->getReturnType();
+        if (is_null($returnType)) {
+            return "";
+        }
+
+        return trim(
+            sprintf(
+                ': %s%s%s',
+                $returnType->allowsNull() ? "?" : "",
+                ($returnType->isBuiltin() || (string) $returnType == "self") ? "" : $classPrefix,
+                $returnType
+            )
+        );
     }
 }
