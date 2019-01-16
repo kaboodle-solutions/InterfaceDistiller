@@ -18,6 +18,6 @@
         "php": ">=7.1.0"
     },
     "autoload": {
-        "classmap": ["src/"]
+        "psr-4": {"Kaboodle\\InterfaceDistiller\\": "src/"}
     }
 }

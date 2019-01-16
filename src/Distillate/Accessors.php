@@ -1,6 +1,6 @@
 <?php
 
-namespace com\github\gooh\InterfaceDistiller\Distillate;
+namespace Kaboodle\InterfaceDistiller\Distillate;
 
 //@codeCoverageIgnoreStart
 interface Accessors

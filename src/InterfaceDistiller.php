@@ -1,11 +1,11 @@
 <?php
 
-namespace com\github\gooh\InterfaceDistiller;
+namespace Kaboodle\InterfaceDistiller;
 
 class InterfaceDistiller
 {
     /**
-     * @var \com\github\gooh\InterfaceDistiller\Distillate
+     * @var \Kaboodle\InterfaceDistiller\Distillate
      */
     protected $distillate;
 
@@ -81,7 +81,7 @@ class InterfaceDistiller
 
     /**
      * @param  integer $reflectionMethodModifiersMask
-     * @return \com\github\gooh\InterfaceDistiller\InterfaceDistiller
+     * @return \Kaboodle\InterfaceDistiller\InterfaceDistiller
      */
     public function methodsWithModifiers($reflectionMethodModifiersMask)
     {
@@ -91,7 +91,7 @@ class InterfaceDistiller
 
     /**
      * @param  string $commaSeparatedInterfaceNames
-     * @return \com\github\gooh\InterfaceDistiller\InterfaceDistiller
+     * @return \Kaboodle\InterfaceDistiller\InterfaceDistiller
      */
     public function extendInterfaceFrom($commaSeparatedInterfaceNames)
     {
@@ -100,7 +100,7 @@ class InterfaceDistiller
     }
 
     /**
-     * @return \com\github\gooh\InterfaceDistiller\InterfaceDistiller
+     * @return \Kaboodle\InterfaceDistiller\InterfaceDistiller
      */
     public function excludeImplementedMethods()
     {
@@ -109,7 +109,7 @@ class InterfaceDistiller
     }
 
     /**
-     * @return \com\github\gooh\InterfaceDistiller\InterfaceDistiller
+     * @return \Kaboodle\InterfaceDistiller\InterfaceDistiller
      */
     public function excludeInheritedMethods()
     {
@@ -118,7 +118,7 @@ class InterfaceDistiller
     }
 
     /**
-     * @return \com\github\gooh\InterfaceDistiller\InterfaceDistiller
+     * @return \Kaboodle\InterfaceDistiller\InterfaceDistiller
      */
     public function excludeTraitMethods()
     {
@@ -127,7 +127,7 @@ class InterfaceDistiller
     }
 
     /**
-     * @return \com\github\gooh\InterfaceDistiller\InterfaceDistiller
+     * @return \Kaboodle\InterfaceDistiller\InterfaceDistiller
      */
     public function excludeMagicMethods()
     {
@@ -136,7 +136,7 @@ class InterfaceDistiller
     }
 
     /**
-     * @return \com\github\gooh\InterfaceDistiller\InterfaceDistiller
+     * @return \Kaboodle\InterfaceDistiller\InterfaceDistiller
      */
     public function excludeOldStyleConstructors()
     {
@@ -146,7 +146,7 @@ class InterfaceDistiller
 
     /**
      * @param string $pcrePattern
-     * @return \com\github\gooh\InterfaceDistiller\InterfaceDistiller
+     * @return \Kaboodle\InterfaceDistiller\InterfaceDistiller
      */
     public function filterMethodsByPattern($pcrePattern)
     {
@@ -156,7 +156,7 @@ class InterfaceDistiller
 
     /**
      * @param \SplFileObject $fileObject
-     * @return \com\github\gooh\InterfaceDistiller\InterfaceDistiller
+     * @return \Kaboodle\InterfaceDistiller\InterfaceDistiller
      */
     public function saveAs(\SplFileObject $fileObject)
     {

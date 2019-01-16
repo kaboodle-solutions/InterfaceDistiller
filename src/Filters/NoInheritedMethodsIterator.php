@@ -1,6 +1,6 @@
 <?php
 
-namespace com\github\gooh\InterfaceDistiller\Filters;
+namespace Kaboodle\InterfaceDistiller\Filters;
 
 class NoInheritedMethodsIterator extends \FilterIterator
 {

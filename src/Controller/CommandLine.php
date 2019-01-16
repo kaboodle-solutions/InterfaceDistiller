@@ -1,8 +1,8 @@
 <?php
 
-namespace com\github\gooh\InterfaceDistiller\Controller;
+namespace Kaboodle\InterfaceDistiller\Controller;
 
-use com\github\gooh\InterfaceDistiller\InterfaceDistiller;
+use Kaboodle\InterfaceDistiller\InterfaceDistiller;
 
 class CommandLine
 {
